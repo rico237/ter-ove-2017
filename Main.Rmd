@@ -8,17 +8,42 @@ output: html_document
 ```{r setup, include=FALSE}
 library(ggplot2)
 setwd("/Users/Rico/GitHubs_Repo/ter-ove-2017/")
-donne <- read.csv(file="data.csv",head=TRUE,sep="\t")
+#donne <- read.csv(file="data.csv",head=TRUE,sep="\t")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
-```{r}
-print(donne)
+```{r, echo=FALSE}
+#definition des functions d'aide
+moyenne<- function(tableau, sub){
+  mo<- paste((nrow(sub)*100)/nrow(tableau), "%")
+  return(mo)
+}
 ```
 
+Premièrement on génére des données aleatoires
 
+```{r, echo=FALSE}
+q4_3 <- sample(1:3, size=40, replace= TRUE)
+q6_5 <- sample(1:13, size=40, replace= TRUE)
+q7_1 <- sample(1:3, size=40, replace= TRUE)
+q8_1 <- sample(1:13, size=40, replace= TRUE)
+universite <- data.frame(q4_3, q6_5, q7_1, q8_1)
+head(universite, n=3)
+```
+
+On utilise subset afin de filtrer les données et travailler sur ceux qui ont un emploi
+
+```{r, echo=FALSE}
+insertion<-subset(universite, q4_3 == 1)
+insertion2<-subset(universite, q7_1 == 1)
+```
+
+Taux d'insertion
+```{r, echo=FALSE}
+moy<-moyenne(universite, insertion)
+moy2<-moyenne(universite, insertion2)
+print(c("18 mois", Universite=moy, "30 mois", Universite=moy2))
+```
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
