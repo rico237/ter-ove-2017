@@ -42,3 +42,34 @@ print(moy)
 
 tableauFinal <- cbind("taux d'insertion 18 mois", Universite=moy)
 print(tableauFinal)
+
+
+
+moyenne<- function(tableau, sub){
+  mo<-(nrow(sub)*100)/nrow(tableau)
+  return(mo)
+}
+q4_3 <- sample(1:3, size=200, replace= TRUE)
+q6_5 <- sample(1:13, size=200, replace= TRUE)
+q7_1 <- sample(1:3, size=200, replace= TRUE)
+q8_1 <- sample(1:13, size=200, replace= TRUE)
+universite <- data.frame(q4_3, q6_5, q7_1, q8_1)
+insertion<-subset(universite, q4_3 == 1)
+insertion2<-subset(universite, q7_1 == 1)
+stable<-subset(insertion, q6_5 == 1 | q6_5 == 2 | q6_5 == 3)
+stable2<-subset(insertion2, q8_1 == 1 | q8_1 == 2 | q8_1 == 3)
+
+# taux d'insertion 18
+#print(moyenne(universite, insertion))
+# taux d'insertion 30
+#print(moyenne(universite, insertion2))
+# emploi stable 18
+#print(moyenne(insertion, stable))
+# emploi stable 30
+#print(moyenne(insertion2, stable2))
+
+emplois<-c(moyenne(universite, insertion), moyenne(insertion, stable) )
+emploiStable<-c(moyenne(universite, insertion2) ,moyenne(insertion2, stable2))
+df<-data.frame(emplois, emploiStable, row.names = c("Taux d'insertion","Part des emplois stable"))
+colnames(df) <-c("18 mois", "30 mois")
+print(df)
