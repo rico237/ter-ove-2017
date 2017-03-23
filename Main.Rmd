@@ -16,7 +16,8 @@ on crée une fonction pourcentage afin de faciliter le calcule de pourcentage
 ```{r, echo=TRUE}
 #definition des functions d'aide pour le poucentage (formatage % + arondit avec 2 chiffre)
 pourcentage<- function(tableau, sub){
-  pr<- paste(round((nrow(sub)*100)/nrow(tableau), digits = 2), "%")
+#  pr<- paste(round((nrow(sub)*100)/nrow(tableau), digits = 2), "%")
+  pr<- round((nrow(sub)*100)/nrow(tableau), digits = 2)
   return(pr)
 }
 ```
@@ -49,6 +50,13 @@ df<-data.frame(emplois, emploiStable, row.names = c("Taux d'insertion","Part des
 colnames(df) <-c("18 mois", "30 mois")
 print(df)
 ```
+
+On essaye de plot certaines données
+```{r, echo=TRUE}
+qplot(x=df$`18 mois`,data= df, main="Univerité données a 18 mois", ylim=c(0, 50))
+```
+
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
