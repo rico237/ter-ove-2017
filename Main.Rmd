@@ -32,19 +32,21 @@ Premièrement on génére des données aleatoires
 n<-200 #taille des donees a generer
 
 # 18 mois
-q4_3 <- sample(1:3, size=n, replace= TRUE) # Possède un emploi ou pas
+q4_3 <- sample(1:3, size=n,prob=c(0.84, 0.05, 0.11), replace= TRUE) # Possède un emploi ou pas
 q6_5 <- sample(1:13, size=n, replace= TRUE) # Type d'emploi
 q6_6r<- sample(2:7, size=n, replace = TRUE) # Niveau d'emploi (ex: Cadre, Ingénieur, etc)
-q6_7 <- sample(1:2, size = n, replace = TRUE) # Temps partiel ou pleins
+q6_7 <- sample(1:2, size = n,prob=c(0.82, 0.18), replace = TRUE) # Temps partiel ou pleins
 
 # 30 mois
-q7_1 <- sample(1:3, size=n, replace= TRUE) # Possède un emploi ou non
+q7_1 <- sample(1:3, size=n, prob=c(0.75, 0.20, 0.05),replace= TRUE) # Possède un emploi ou non
 q8_1 <- sample(1:13, size=n, replace= TRUE) # Type d'emploi
 q8_2r<- sample(2:7, size= n, replace = TRUE) # Niveau d'emploi (ex: Cadre, Ingénieur, etc)
-q8_3<- sample(1:2, size = n, replace = TRUE) # Temps partiel ou pleins
+q8_3<- sample(1:2, size = n,prob=c(0.71, 0.29), replace = TRUE) # Temps partiel ou pleins
+
+gender<-sample(c("M", "F"), n, prob=c(0.54, 0.46), replace=TRUE)
 
 # Data frame avec l'ensemble des donnees
-universite <- data.frame(q4_3, q6_5, q6_6r, q6_7, q7_1, q8_1, q8_2r, q8_3)
+universite <- data.frame(q4_3, q6_5, q6_6r, q6_7, q7_1, q8_1, q8_2r, q8_3, gender)
 head(universite, n=2)
 ```
 
@@ -63,9 +65,9 @@ tempsPlein2<-subset(insertion2, q8_3 == 1)
 
 On formatte les données en data frame et on affiche les données
 Une question se pose afin de savoir 
-si la part des emplois cadre concerne l'ensemble de la population ayant un emploi  (total pouvant etre 80)
+si la part des emplois cadre concerne l ensemble de la population ayant un emploi  (total pouvant etre 80)
 ou uniquement la part des cadres parmis la population comprenant les cares + profession intermediaire (sous population des 80, ex:30)
-le pourcentage n'est pas le même si l'on etudie le pourcentage sur 80 que sur 30
+le pourcentage n est pas le même si l on etudie le pourcentage sur 80 que sur 30
 
 ```{r, echo=TRUE}
 pourcentage18<-c(pourcentage(universite, insertion), pourcentage(insertion, stable), pourcentage(insertion, tempsPlein), pourcentage(insertion, niveauEmploi), pourcentage(insertion, subset(insertion, q6_6r == 2)))
@@ -76,16 +78,39 @@ print(df)
 ```
 
 On essaye de plot certaines données
-```{r, echo=TRUE}
 
-qplot(universite$q6_5, data = universite, bins=30, size = universite$q6_5)
-ggplot(universite, aes(x = universite$q4_3)) + geom_bar()
+```{r, echo=FALSE}
+#Afin d'avoir un affichage plus clair pour le plot
+universite$insertion18 <-ifelse(universite$q4_3 ==1, "oui", "non")
+plotInsertion<-ggplot(universite, aes(x=universite$insertion18, fill=universite$insertion18)) 
+plotInsertion<- plotInsertion + geom_bar(position=position_dodge()) 
+plotInsertion<- plotInsertion + xlab("") 
+plotInsertion<- plotInsertion + ylab("Total") 
+plotInsertion<- plotInsertion + ylim(c(0, n))
+plotInsertion<- plotInsertion + ggtitle("Possède un emploi à 18 mois. Population = 200 personnes.") 
+plotInsertion<- plotInsertion + scale_fill_discrete(name = "")
+plotInsertion<- plotInsertion + theme_minimal()
+plotInsertion
 
-qplot(x=df$`18 mois`,data= df, main="Univerité données a 18 mois", ylim=c(0, 50), xlim = c(0, 100), bins=30)
+universite$insertion30 <-ifelse(universite$q7_1 ==1, "oui", "non")
+plotInsertion2<-ggplot(universite, aes(x=universite$insertion30, fill=universite$insertion30)) 
+plotInsertion2<- plotInsertion2 + geom_bar(position=position_dodge()) 
+plotInsertion2<- plotInsertion2 + xlab("") 
+plotInsertion2<- plotInsertion2 + ylab("Total") 
+plotInsertion2<- plotInsertion2 + ylim(c(0,n))
+plotInsertion2<- plotInsertion2 + ggtitle("Possède un emploi à 30 mois. Population = 200 personnes.") 
+plotInsertion2<- plotInsertion2 + scale_fill_discrete(name = "")
+plotInsertion2<- plotInsertion2 + theme_minimal()
+plotInsertion2
 
-a<-ggplot(data = df, aes(x = df$`18 mois`, y = sum(df$`18 mois`)), bins=30)
-a<- a+geom_count()
-a<-a+xlab("Duree des emplois")+ylab("Total")+ggtitle("Test de plots des emploi stables a 18 mois")+scale_color_discrete(name = "Légende")
-print(a)
+#qplot(universite$q6_5, data = universite, bins=30, size = universite$q6_5)
+#ggplot(universite, aes(x = universite$q4_3)) + geom_bar()
+
+#qplot(x=df$`18 mois`,data= df, main="Univerité données a 18 mois", ylim=c(0, 50), xlim = c(0, 100), bins=30)
+
+#a<-ggplot(data = df, aes(x = df$`18 mois`, y = sum(df$`18 mois`)), bins=30)
+#a<- a+geom_count()
+#a<-a+xlab("Duree des emplois")+ylab("Total")+ggtitle("Test de plots des emploi stables a 18 mois")+scale_color_discrete(name = "Légende")
+#print(a)
 
 ```
