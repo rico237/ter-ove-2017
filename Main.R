@@ -73,3 +73,16 @@ emploiStable<-c(moyenne(universite, insertion2) ,moyenne(insertion2, stable2))
 df<-data.frame(emplois, emploiStable, row.names = c("Taux d'insertion","Part des emplois stable"))
 colnames(df) <-c("18 mois", "30 mois")
 print(df)
+
+
+
+
+qplot(universite$q6_5, data = universite, bins=30, size = universite$q6_5)
+ggplot(universite, aes(x = universite$q4_3)) + geom_bar()
+
+qplot(x=df$`18 mois`,data= df, main="Univerité données a 18 mois", ylim=c(0, 50), xlim = c(0, 100))
+
+a<-ggplot(data = df, aes(x = df$`18 mois`, y = sum(df$`18 mois`)))
+a<- a+geom_count()
+a<-a+xlab("Duree des emplois")+ylab("Total")+ggtitle("Test de plots des emploi stables a 18 mois")+scale_color_discrete(name = "Légende")
+print(a)
