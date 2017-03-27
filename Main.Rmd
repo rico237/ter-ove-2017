@@ -46,7 +46,7 @@ q8_3<- sample(1:2, size = n,prob=c(0.71, 0.29), replace = TRUE) # Temps partiel 
 gender<-sample(c("M", "F"), n, prob=c(0.54, 0.46), replace=TRUE)
 
 # Data frame avec l'ensemble des donnees
-universite <- data.frame(q4_3, q6_5, q6_6r, q6_7, q7_1, q8_1, q8_2r, q8_3, gender)
+universite <- data.frame(q4_3 , q6_5, q6_6r, q6_7, q7_1, q8_1, q8_2r, q8_3, gender)
 head(universite, n=2)
 ```
 
@@ -82,7 +82,7 @@ On essaye de plot certaines données
 ```{r, echo=FALSE}
 #Afin d'avoir un affichage plus clair pour le plot
 universite$insertion18 <-ifelse(universite$q4_3 ==1, "oui", "non")
-plotInsertion<-ggplot(universite, aes(x=universite$insertion18, fill=universite$insertion18)) 
+plotInsertion<-ggplot(universite, aes(x=universite$insertion18, fill=universite$gender)) 
 plotInsertion<- plotInsertion + geom_bar(position=position_dodge()) 
 plotInsertion<- plotInsertion + xlab("") 
 plotInsertion<- plotInsertion + ylab("Total") 
