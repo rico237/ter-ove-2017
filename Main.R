@@ -3,7 +3,7 @@ library(ggplot2)
 
 # Mettre la racin du projet
 setwd("/Users/Rico/GitHubs_Repo/ter-ove-2017/")
-
+#setwd("/Users/cyrillauret/Documents/M1/ter-ove-2017/")
 #donne <- read.csv(file="data.csv",head=TRUE,sep="\t")
 # Generer des données de gens qui ont un boulot vs d'autre non
 # ensembleDeDonnee <- sample(0:1, size=100, replace= TRUE)
@@ -86,3 +86,4 @@ a<-ggplot(data = df, aes(x = df$`18 mois`, y = sum(df$`18 mois`)))
 a<- a+geom_count()
 a<-a+xlab("Duree des emplois")+ylab("Total")+ggtitle("Test de plots des emploi stables a 18 mois")+scale_color_discrete(name = "Légende")
 print(a)
+
