@@ -1,0 +1,17 @@
+TER 30 MARS 
+
+
+Faire le diagramme en barre avec les pourcentage comme sur les note flash du ministère.
+
+
+
+Aller sur OVE et regarder les plots puis essayer de les reproduire. 
+
+Server.R (reçu par mail) 
+	- faire le barstackerdplot2 mais en sans le stack (pour qui ressemble au diagramme en bar de celui des nous flash
+
+Taper bar plot dans google 
+
+Faire un jeu de test avec 5personnes qui on répondu par exemple et 6 non répondu  puis verifier a la main 
+
+
