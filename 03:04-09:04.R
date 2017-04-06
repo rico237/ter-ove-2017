@@ -51,10 +51,8 @@ BarStackedPlot2 <- function(df, aesX, aesF, legend.title = NULL, labelX = TRUE, 
 
 sa <- sample(c("oui", "non"), size=10,prob=c(0.7, 0.3), replace= TRUE)
 c_sexe<-sample(c("h", "f"), 10, prob=c(0.7, 0.3), replace=TRUE) #Definition de sexes
-df<-data.frame(cbind(sa, c_sexe))
-df
 
-tab <- with(df, table(sa, c_sexe))
+tab <- table(sa, c_sexe)
 das<-data.frame(tab/sum(tab))
 das
 
