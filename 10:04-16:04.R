@@ -48,6 +48,8 @@ niveauEmploi2<-subset(insertion2, q8_2r == 2 | q8_2r == 4)
 tempsPlein<-subset(insertion, q6_7 == 1)
 tempsPlein2<-subset(insertion2, q8_3 == 1)
 
+
+
 x<-c(1, 1, 1, 2, 2, 2)
 y<-c(pourcentage(insertion, stable),
      pourcentage(insertion, tempsPlein),
