@@ -69,6 +69,22 @@ On y formatte certaines des valeurs pour un affichage propres des plots (valeur 
 
 
 ```{r, echo=TRUE}
+
+boursier<-subset(insertion, q2_2 == 1 | q2_2 == 2)
+boursierSansEmploi<-subset(universite, q2_2 == 1 | q2_2 == 2)
+
+a<-c(1,1,2,2)
+b<-c(pourcentage(insertion, boursier),
+100 - pourcentage(insertion, boursier),
+pourcentage(universite, boursierSansEmploi),
+100 - pourcentage(universite, boursierSansEmploi))
+c<-c("boursier", "non boursier", "boursier", "non boursier")
+dfBoursier<-data.frame(a,b,c)
+colnames(dfBoursier)<-c("x", "y", "fill")
+dfBoursier$xLabel<-ifelse(dfBoursier$x == 1, "Possède un emploi", "Ne possède pas d'emploi")
+dfBoursier$freq<-GetPercentLabels(dfBoursier$y)
+dfBoursier
+
 x<-c(1, 1, 1, 2, 2, 2)
 y<-c(pourcentage(insertion, stable),
      pourcentage(insertion, tempsPlein),
@@ -90,10 +106,17 @@ dfPlot
 plot <- ggplot(dfPlot, aes(x=factor(dfPlot$date), y=dfPlot$y, fill=factor(dfPlot$fill)))+ 
   geom_bar(stat = "identity", position=position_dodge()) + 
   geom_text(aes(label = dfPlot$freq, y = dfPlot$y + 0.15),position = position_dodge(0.9), vjust = -1)+
-  #geom_text(aes(label=dfPlot$y))+
   labs(title="Progression des conditions d’emploi (en %)", x="", y="Pourcentage", fill="")+
   ylim(c(0,100))
 plot<- plot + theme_calc() + scale_color_calc()
 plot
+
+plotBourse <- ggplot(dfBoursier, aes(x=factor(dfBoursier$xLabel), y=dfBoursier$y, fill=factor(dfBoursier$fill)))+
+  geom_bar(stat = "identity", position = position_dodge()) +
+  geom_text(aes(label = dfBoursier$freq, y = dfBoursier$y + 0.15), position = position_dodge(0.9), vjust = -1) +
+  labs(title="La bourse faciliter", x="", y="Pourcentage", fill="")+
+  ylim(c(0,100))
+plotBourse<- plotBourse + theme_calc() + scale_color_calc()
+plotBourse
 
 ```
