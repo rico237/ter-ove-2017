@@ -1,32 +1,19 @@
----
-title: "TER OVE 2017"
-author: "Team Strange"
-date: "Semaine du 10/04 au 16/04"
-output: html_document
----
-
-```{r setup, include=FALSE}
 library(ggplot2)
 library(ggthemes)
-knitr::opts_chunk$set(echo = TRUE)
-```
+library(plyr)
 
-###Introduction (non visible, echo=FALSE)
-Elle comprend la définition des fonctions que l'on utilise depuis le début du projet.
-
-On y trouve aussi la création du jeu de données aléatoires.
-
-```{r, echo=FALSE}
 GetPercentLabels <-function(val, digits = 0){
   pr<- paste(round(val, digits), "%")
   return(pr)
 }
+
 #on crée une fonction pourcentage afin de faciliter le calcule de pourcentage
 pourcentage<- function(tableau, sub){
   pr<- round((nrow(sub)*100)/nrow(tableau), digits = 2)
   return(pr)
 }
 
+#Premièrement on génére des données aleatoires
 n<-200 #taille des donees a generer
 
 # 18 mois
@@ -61,29 +48,6 @@ niveauEmploi2<-subset(insertion2, q8_2r == 2 | q8_2r == 4)
 tempsPlein<-subset(insertion, q6_7 == 1)
 tempsPlein2<-subset(insertion2, q8_3 == 1)
 
-```
-
-
-###On crée un jeu de données avec uniquement le contenue
-On y formatte certaines des valeurs pour un affichage propres des plots (valeur & légende)
-
-
-```{r, echo=TRUE}
-
-boursier<-subset(insertion, q2_2 == 1 | q2_2 == 2)
-boursierSansEmploi<-subset(universite, q2_2 == 1 | q2_2 == 2)
-
-a<-c(1,1,2,2)
-b<-c(pourcentage(insertion, boursier),
-100 - pourcentage(insertion, boursier),
-pourcentage(universite, boursierSansEmploi),
-100 - pourcentage(universite, boursierSansEmploi))
-c<-c("boursier", "non boursier", "boursier", "non boursier")
-dfBoursier<-data.frame(a,b,c)
-colnames(dfBoursier)<-c("x", "y", "fill")
-dfBoursier$xLabel<-ifelse(dfBoursier$x == 1, "Possède un emploi", "Ne possède pas d'emploi")
-dfBoursier$freq<-GetPercentLabels(dfBoursier$y)
-dfBoursier
 
 x<-c(1, 1, 1, 2, 2, 2)
 y<-c(pourcentage(insertion, stable),
@@ -97,26 +61,16 @@ dfPlot<-data.frame(x,y,fill)
 dfPlot$date<-ifelse(dfPlot$x == 1, "18 mois après le diplome", "30 mois après le diplome")
 dfPlot$freq<-GetPercentLabels(dfPlot$y)
 dfPlot
-```
 
-
-###Plots des données 
-
-```{r, echo=TRUE}
 plot <- ggplot(dfPlot, aes(x=factor(dfPlot$date), y=dfPlot$y, fill=factor(dfPlot$fill)))+ 
   geom_bar(stat = "identity", position=position_dodge()) + 
   geom_text(aes(label = dfPlot$freq, y = dfPlot$y + 0.15),position = position_dodge(0.9), vjust = -1)+
+  #geom_text(aes(label=dfPlot$y))+
   labs(title="Progression des conditions d’emploi (en %)", x="", y="Pourcentage", fill="")+
   ylim(c(0,100))
 plot<- plot + theme_calc() + scale_color_calc()
 plot
 
-plotBourse <- ggplot(dfBoursier, aes(x=factor(dfBoursier$xLabel), y=dfBoursier$y, fill=factor(dfBoursier$fill)))+
-  geom_bar(stat = "identity", position = position_dodge()) +
-  geom_text(aes(label = dfBoursier$freq, y = dfBoursier$y + 0.15), position = position_dodge(0.9), vjust = -1) +
-  labs(title="La bourse faciliter", x="", y="Pourcentage", fill="")+
-  ylim(c(0,100))
-plotBourse<- plotBourse + theme_calc() + scale_color_calc()
-plotBourse
 
-```
+
+

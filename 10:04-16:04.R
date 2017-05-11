@@ -49,6 +49,14 @@ tempsPlein<-subset(insertion, q6_7 == 1)
 tempsPlein2<-subset(insertion2, q8_3 == 1)
 
 
+boursier<-subset(insertion, q2_2 == 1)
+autre<-subset(insertion, q2_2 == 2)
+nonboursier<-subset(insertion, q2_2 == 3)
+
+pourcentage(insertion, boursier)
+pourcentage(insertion, autre)
+pourcentage(insertion, nonboursier)
+
 
 x<-c(1, 1, 1, 2, 2, 2)
 y<-c(pourcentage(insertion, stable),
@@ -71,4 +79,7 @@ plot <- ggplot(dfPlot, aes(x=factor(dfPlot$date), y=dfPlot$y, fill=factor(dfPlot
   ylim(c(0,100))
 plot<- plot + theme_calc() + scale_color_calc()
 plot
+
+
+
 
