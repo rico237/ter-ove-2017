@@ -1,22 +1,6 @@
----
-title: "TER OVE 2017"
-author: "Team Strange"
-date: "Semaine du 10/04 au 16/04"
-output: html_document
----
-
-```{r setup, include=FALSE}
 library(ggplot2)
 library(ggthemes)
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-###Introduction (non visible, echo=FALSE)
-Elle comprend la définition des fonctions que l'on utilise depuis le début du projet.
-
-On y trouve aussi la création du jeu de données aléatoires.
-
-```{r, echo=FALSE}
 GetPercentLabels <-function(val, digits = 0){
   pr<- paste(round(val, digits), "%")
   return(pr)
@@ -93,17 +77,13 @@ poursuiteMaster2 <-subset(dipMaster, q3_1_2 != 3) #14-15
 poursuiteLic <-subset(dipLP, q3_1_1 != 3) #13-14
 poursuiteLic2 <-subset(dipLP, q3_1_2 != 3) #14-15
 
-```
 
-###Plots des données 
-
-```{r, echo=TRUE}
 x<-c("Master","Licence Pro")
 y<-(c(pourcentage(insertion, emploiMaster), pourcentage(insertion, emploiLP)))
 ne<- data.frame(x,y)
 plot<- ggplot(ne, aes(x=factor(x), y = y/sum(y)*100)) + geom_bar(stat="identity")+
-        labs(title="Type de diplomes possédant un emploi (en %)", x="", y="Pourcentage")+
-        ylim(c(0,100)) + theme_calc() + scale_color_calc()
+  labs(title="Type de diplomes possédant un emploi (en %)", x="", y="Pourcentage")+
+  ylim(c(0,100)) + theme_calc() + scale_color_calc()
 plot
 
 a<-c(1,1,2,2)
@@ -122,4 +102,23 @@ plotPoursuite<- ggplot(poursuiteDF, aes(x=factor(labelX), y = b, fill = c)) + ge
   ylim(c(0,100)) + theme_calc() + scale_color_calc()
 plotPoursuite
 
-```
+plot <- ggplot(dfPlot, aes(x=factor(dfPlot$date), y=dfPlot$y, fill=factor(dfPlot$fill)))+ 
+  geom_bar(stat = "identity", position=position_dodge()) + 
+  geom_text(aes(label = dfPlot$freq, y = dfPlot$y + 0.15),position = position_dodge(0.9), vjust = -1)+
+  labs(title="Progression des conditions d’emploi (en %)", x="", y="Pourcentage", fill="")+
+  ylim(c(0,100))
+plot<- plot + theme_calc() + scale_color_calc()
+plot
+
+x<-c(1, 1, 1, 2, 2, 2)
+y<-c(pourcentage(insertion, stable),
+     pourcentage(insertion, tempsPlein),
+     pourcentage(insertion, niveauEmploi),
+     pourcentage(insertion2, stable2),
+     pourcentage(insertion2, tempsPlein2),
+     pourcentage(insertion2, niveauEmploi2))
+fill<-c("Emploi stable","Emploi à temps plein","Emploi cadre ou intermédiaires","Emploi stable","Emploi à temps plein","Emploi cadre ou intermédiaires")
+dfPlot<-data.frame(x,y,fill)
+dfPlot$date<-ifelse(dfPlot$x == 1, "18 mois après le diplome", "30 mois après le diplome")
+dfPlot$freq<-GetPercentLabels(dfPlot$y)
+dfPlot

@@ -1,0 +1,29 @@
+---
+title: "Dynamic report"
+output: pdf_document
+params:
+  n: NA
+  situationDiplome: NA
+---
+
+Une preuve de concept pour la génération de rapport en PDF.
+Il est possible de générer aussi du HTML
+
+Il doit être possible d'améliorer le style.
+A plot from the web page
+
+```{r}
+params$situationDiplome()
+```
+
+```{r}
+# The `params$n` object is available in the document.
+params$n
+```
+
+A plot of `params$n` random points.
+
+```{r}
+plot(rnorm(params$n), rnorm(params$n))
+```
+
