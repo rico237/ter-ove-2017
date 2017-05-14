@@ -1,0 +1,88 @@
+---
+title: "Travaux d'Etude et de Recherche"
+author : "Lafortune Pierre, Lauret Cyril, Wolber Herrick"
+date : "22 juin 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+
+
+Dans le cadre de notre Travail d'Etude et de Recherche, nous avons decidé de former un groupe de trois etudiants. 
+Lafortune Pierre, Lauret Cyril et Wolber Herrick. 
+Etant intrigué par les travaux de l'OVE et dans le but de pouvoir apporté des solutions notables ainsi que nos services afin d'améliorer les informations concernant les conditions de vie des étudiants ainsi que les taux d'insertions nous avons décidé de choisir comme sujet: * Développement d'une application web pour l'OVE*.
+
+L'OVE signifie l'Observatoire de la Vie Etudiante a été crée en 1993 et a pour principal but de realiser des études à l'aide de questionnaires transmis aux étudiants pendant leur étude ou après l'obtention de leur diplôme.
+Les etudes portents sur : 
+  - L'insertion professionnelle (six mois et trentre mois après l'obtention de leur diplôme)  
+  - L'évaluation des formations 
+  - Les conditions de vies étudiants
+  - Le déroulement de leurs études
+  
+  
+L'OVE a pour mission de donner une information aussi complète et objective que possible sur les conditions de vie des étudiants et sur leur rapport avec le déroulement des études. De plus l'OVE effectue lui-même ses enquêtes et réalises ses propres statistiques à l'aide d'étudiants stagiaires.
+
+Ses missions : 
+
+Les enquêtes d'insertion professionnelle des diplômés  : 
+
+L'OVE mène deux enquêtes annuelles visant à étudier l'insertion professionnelle des diplômés de l'Université Nice Sophia Antipolis (Master et Licence Professionnelle).
+
+Enquête à 30 mois : cette enquête est conduite dans un cadre national (toutes les universités réalisent l'enquête au même moment) et interroge les diplômés sur leur situation professionnelle au 1er décembre de l'année en cours, soit 30 mois après l'obtention de leur Master ou de leur Licence Professionnelle.
+
+Enquête à 6 mois : lancée pour la première fois en avril 2011, cette enquête locale est envoyée aux diplômés ayant validé leur Master ou leur Licence Professionnelle l'année précédente. Le questionnaire porte sur leur situation professionnelle au 1er avril de l'année en cours, soit environ 6 mois après l'obtention du diplôme.
+
+
+L'enquête sur les Conditions de vie : 
+
+Cette enquête permet d'étudier les styles/mode de vie des étudiants qui peut s'averer parfois très différente d'un étudiant a un autre. 
+Cette enquête cherche a faire observer de façon relative tous les aspects majeurs de la vie d'un étudiant, c'est à dire tant du coté matérielle (ressources, logements, etc) que du coté temps libre, occuppation de sont temps libres mais aussi les caractéristiques sociodémographiques. Le questionnaire aborde les grands thèmes suivants : 
+
+    - Le parcours d’études jusqu’au moment de l’enquête ;
+    - Les conditions d’études (sur le lieu d’études, conditions de déplacement…) ;
+    - Les temps libres ;
+    - Le travail rémunéré ;
+    - Le logement ;
+    - Les ressources et dépenses ;
+    - La santé ;
+    - L’alimentation ;
+    - Les parents et les proches ;
+    - Les caractéristiques sociodémographiques (origines sociale et géographique, sexe, âge).
+    
+    
+PRESENTATION DU TER 
+
+Initialement l'OVE utilisé le "butineur", outil développé sur le logiciel Microsoft Excel permettant d'effectuer l'exploitation des données recueillis par les enquêtes. Le "butineur" permet l'analyse et la visualisation graphique de stastiques de manière automatique et dynamique contenant un filtre pour sélectionner les résultatsdelon le diplôme voulu. Cependant cette solution n'était pas la plus adapté, c'est à dire que la portabilité de Microsoft Excel et limité aux utilisateurs Microsoft qui ont une version d'Excel. De ce fait, les données étaient difficilement ouverte ou lu par d'autre système d'exploitation car les macros sont différentes d'un logiciel à l'autre. Après réflexion et analyse, le choix de l'OVE a été de développer une application WEB qui permet ainsi la portabilité des données. 
+
+Le principale objectif de notre TER est d'integrer dans l'application Web la visualisation de données.
+Pour améliorer et fournir des graphiques plus parlant pour l'OVE nous avons analysé les différents graphiques déjà présent, puis nous nous sommes inspiré des graphiques présent dans les notes flash du ministère de l'éducation, afin de les reproduires et de les integrer a notre application web. 
+
+
+
+
+
+
+## Etat de l'art
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+## Travail effectué 
+
+
+## Gestion de projet 
+
+## Conclusion 
+
+## Perspective et reflexions personnelles
