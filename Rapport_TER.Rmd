@@ -64,11 +64,13 @@ L'application WEB est développé à l'aide du framework shiny avec intégration
 
 Qu'est ce que le langage R :
 
+Le langage R est un langage d'analyse statistique 
 
 
 Pourquoi avoir choisi le langage R : 
 
-Le langage R est langage qui a beaucoup de succès auprès de la communauté scientifique. Il permet aux mathématiciens et aux scientifiques (non informaticien) de pouvoir 
+Le langage R est langage qui a beaucoup de succès auprès de la communauté scientifique. Il permet aux mathématiciens et aux scientifiques (non informaticien) de pouvoir implementer de manière relativement facile des algortihmes de traitement et de fouille de données. Il permet ainsi de creer des graphiques résultants des données obtenue de manière assez intuitive. Le langage R a été choisi pour son adaptabilité a tout type d'utilisateur. 
+
 
 Qu'est ce que le framework Shiny : 
 
