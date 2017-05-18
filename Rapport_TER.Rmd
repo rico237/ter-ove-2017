@@ -60,19 +60,23 @@ PRESENTATION DU TER
 
 Initialement l'OVE utilisé le "butineur", outil développé sur le logiciel Microsoft Excel permettant d'effectuer l'exploitation des données recueillis par les enquêtes. Le "butineur" permet l'analyse et la visualisation graphique de stastiques de manière automatique et dynamique contenant un filtre pour sélectionner les résultats selon le diplôme voulu. Cependant cette solution n'était pas la plus adapté, c'est à dire que la portabilité de Microsoft Excel et limité aux utilisateurs Microsoft qui ont une version d'Excel. De ce fait, les données étaient difficilement ouverte ou lu par d'autre système d'exploitation car les macros sont différentes d'un logiciel à l'autre. Après réflexion et analyse, le choix de l'OVE a été de développer une application WEB qui permet ainsi la portabilité des données. 
 
-L'application WEB est développé à l'aide du framework shiny avec intégration de données traiter dans le langage R qui nous a permi d'effectuer la fouille des données et de générer les graphiques résultants.
+L'application WEB est développé à l'aide du framework shiny avec intégration de données traiter dans le langage R et le logiciel GNU R qui nous a permi d'effectuer la fouille des données et de générer les graphiques résultants.
 
 Qu'est ce que le langage R :
 
-Le langage R est un langage d'analyse statistique 
+Le langage R est un langage informatique dédié au statistiques et à la science des données. L'implémentation la plus connue du langage R et le logiciel GNU R. Le langage R est dérivé du langage S développé par John Chambers. GNU R est un logiciel libre. 
 
 
 Pourquoi avoir choisi le langage R : 
 
-Le langage R est langage qui a beaucoup de succès auprès de la communauté scientifique. Il permet aux mathématiciens et aux scientifiques (non informaticien) de pouvoir implementer de manière relativement facile des algortihmes de traitement et de fouille de données. Il permet ainsi de creer des graphiques résultants des données obtenue de manière assez intuitive. Le langage R a été choisi pour son adaptabilité a tout type d'utilisateur. 
+Le langage R est langage qui a beaucoup de succès auprès de la communauté scientifique. Il permet aux mathématiciens et aux scientifiques (non informaticien) de pouvoir implementer de manière relativement simple des algortihmes de traitement et de fouille de données. Il permet ainsi de creer des graphiques résultants des données obtenue de manière assez intuitive. Le langage R a été choisi pour son adaptabilité a tout type d'utilisateur. 
 
 
 Qu'est ce que le framework Shiny : 
+
+Shiny est un package R, développé par RStudio qui permet la création de pages web interactives sur lesquelles il est possible de réaliser toutes les analyse disponibles sous R. 
+
+L'avantage de Shiny est qu'aucune connaissance en HTML, CSS ainsi que Javascript n'est requisen, tout se fais directement en R. Cela permet et peut attirer de potentiel utilisateurs étant attiré par le developpement d'application web sans connaitre les langages du web. 
 
 Pourquoi avoir choisi Shiny : 
 
