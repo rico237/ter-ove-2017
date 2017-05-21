@@ -10,94 +10,110 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Remerciements
 Nos remerciements s'adresse à notre encadrant de Travaux d'Etude et de Recherche le maitre de conférence M.Malapert Arnaud qui nous a guidé tout au long de la durée de notre projet de Travaux d'Etude et de Recherche afin de fournir les résultats les plus pertinents et les plus représentatifs possible. De plus nous le remercions pour sa disponibilité à repondre à nos questions.
+
 ## Introduction
 
-
-
-Dans le cadre de notre Travail d'Etude et de Recherche, nous avons decidé de former un groupe de trois etudiants. 
-Lafortune Pierre, Lauret Cyril et Wolber Herrick. 
-Etant intrigué par les travaux de l'OVE et dans le but de pouvoir apporté des solutions notables ainsi que nos services afin d'améliorer les informations concernant les conditions de vie des étudiants ainsi que les taux d'insertions nous avons décidé de choisir comme sujet: * Développement d'une application web pour l'OVE*.
+Dans le cadre de notre Travail d'Etude et de Recherche, nous avons decidé de former un groupe de trois etudiants.<br/>
+Lafortune Pierre, Lauret Cyril et Wolber Herrick. <br/>
+Etant intrigué par les travaux de l'OVE et dans le but de pouvoir apporter des solutions notables, ainsi que nos services afin d'améliorer les informations concernant les conditions de vie des étudiants, et également les taux d'insertions, nous avons décidé de choisir comme sujet: *Développement d'une application web pour l'OVE*.<br/>
 
 L'OVE signifie l'Observatoire de la Vie Etudiante a été crée en 1993 et a pour principal but de realiser des études à l'aide de questionnaires transmis aux étudiants pendant leur étude ou après l'obtention de leur diplôme.
-Les etudes portents sur : 
-  - L'insertion professionnelle (six mois et trentre mois après l'obtention de leur diplôme)  
-  - L'évaluation des formations 
-  - Les conditions de vies étudiants
-  - Le déroulement de leurs études
+Les etudes portents sur :  <br/>
+          - L'insertion professionnelle (six mois et trentre mois après l'obtention de leur diplôme)  
+          - L'évaluation des formations 
+          - Les conditions de vies étudiants
+          - Le déroulement de leurs études
   
   
 L'OVE a pour mission de donner une information aussi complète et objective que possible sur les conditions de vie des étudiants et sur leur rapport avec le déroulement des études. De plus l'OVE effectue lui-même ses enquêtes et réalises ses propres statistiques à l'aide d'étudiants stagiaires.
 
-Ses missions : 
+**Ses missions** :
 
-Les enquêtes d'insertion professionnelle des diplômés  : 
+**Les enquêtes d'insertion professionnelle des diplômés** : 
 
 L'OVE mène deux enquêtes annuelles visant à étudier l'insertion professionnelle des diplômés de l'Université Nice Sophia Antipolis (Master et Licence Professionnelle).
 
-Enquête à 30 mois : cette enquête est conduite dans un cadre national (toutes les universités réalisent l'enquête au même moment) et interroge les diplômés sur leur situation professionnelle au 1er décembre de l'année en cours, soit 30 mois après l'obtention de leur Master ou de leur Licence Professionnelle.
+*Enquête à 30 mois *: cette enquête est conduite dans un cadre national (toutes les universités réalisent l'enquête au même moment) et interroge les diplômés sur leur situation professionnelle au 1er décembre de l'année en cours, soit 30 mois après l'obtention de leur Master ou de leur Licence Professionnelle.
 
-Enquête à 6 mois : lancée pour la première fois en avril 2011, cette enquête locale est envoyée aux diplômés ayant validé leur Master ou leur Licence Professionnelle l'année précédente. Le questionnaire porte sur leur situation professionnelle au 1er avril de l'année en cours, soit environ 6 mois après l'obtention du diplôme.
+*Enquête à 6 mois *: lancée pour la première fois en avril 2011, cette enquête locale est envoyée aux diplômés ayant validé leur Master ou leur Licence Professionnelle l'année précédente. Le questionnaire porte sur leur situation professionnelle au 1er avril de l'année en cours, soit environ 6 mois après l'obtention du diplôme.
 
 
-L'enquête sur les Conditions de vie : 
+**L'enquête sur les Conditions de vie ** : 
 
 Cette enquête permet d'étudier les styles/mode de vie des étudiants qui peut s'averer parfois très différente d'un étudiant a un autre. 
-Cette enquête cherche a faire observer de façon relative tous les aspects majeurs de la vie d'un étudiant, c'est à dire tant du coté matérielle (ressources, logements, etc) que du coté temps libre, occuppation de sont temps libres mais aussi les caractéristiques sociodémographiques. Le questionnaire aborde les grands thèmes suivants : 
-
-    - Le parcours d’études jusqu’au moment de l’enquête ;
-    - Les conditions d’études (sur le lieu d’études, conditions de déplacement…) ;
-    - Les temps libres ;
-    - Le travail rémunéré ;
-    - Le logement ;
-    - Les ressources et dépenses ;
-    - La santé ;
-    - L’alimentation ;
-    - Les parents et les proches ;
-    - Les caractéristiques sociodémographiques (origines sociale et géographique, sexe, âge).
+Cette enquête cherche a faire observer de façon relative tous les aspects majeurs de la vie d'un étudiant, c'est à dire tant du coté matérielle (ressources, logements, etc) que du coté temps libre, occuppation de sont temps libres mais aussi les caractéristiques sociodémographiques. Le questionnaire aborde les grands thèmes suivants : <br/>
+          - Le parcours d’études jusqu’au moment de l’enquête ;
+          - Les conditions d’études (sur le lieu d’études, conditions de déplacement…) ;
+          - Les temps libres ;
+          - Le travail rémunéré ;
+          - Le logement ;
+          - Les ressources et dépenses ;
+          - La santé ;
+          - L’alimentation ;
+          - Les parents et les proches ;
+          - Les caractéristiques sociodémographiques (origines sociale et géographique, sexe, âge).
     
     
-PRESENTATION DU TER 
+**PRESENTATION DU TER**
 
 Initialement l'OVE utilisé le "butineur", outil développé sur le logiciel Microsoft Excel permettant d'effectuer l'exploitation des données recueillis par les enquêtes. Le "butineur" permet l'analyse et la visualisation graphique de stastiques de manière automatique et dynamique contenant un filtre pour sélectionner les résultats selon le diplôme voulu. Cependant cette solution n'était pas la plus adapté, c'est à dire que la portabilité de Microsoft Excel et limité aux utilisateurs Microsoft qui ont une version d'Excel. De ce fait, les données étaient difficilement ouverte ou lu par d'autre système d'exploitation car les macros sont différentes d'un logiciel à l'autre. Après réflexion et analyse, le choix de l'OVE a été de développer une application WEB qui permet ainsi la portabilité des données. 
 
 L'application WEB est développé à l'aide du framework shiny avec intégration de données traiter dans le langage R et le logiciel GNU R qui nous a permi d'effectuer la fouille des données et de générer les graphiques résultants.
 
-Qu'est ce que le langage R :
+**Qu'est ce que le langage R **:
 
 Le langage R est un langage informatique dédié au statistiques et à la science des données. L'implémentation la plus connue du langage R et le logiciel GNU R. Le langage R est dérivé du langage S développé par John Chambers. GNU R est un logiciel libre. 
 
 
-Pourquoi avoir choisi le langage R : 
+**Pourquoi avoir choisi le langage R **: 
 
 Le langage R est langage qui a beaucoup de succès auprès de la communauté scientifique. Il permet aux mathématiciens et aux scientifiques (non informaticien) de pouvoir implementer de manière relativement simple des algortihmes de traitement et de fouille de données. Il permet ainsi de creer des graphiques résultants des données obtenue de manière assez intuitive. Le langage R a été choisi pour son adaptabilité a tout type d'utilisateur. 
 
 
-Qu'est ce que le framework Shiny : 
+**Qu'est ce que le framework Shiny **: 
 
 Shiny est un package R, développé par RStudio qui permet la création de pages web interactives sur lesquelles il est possible de réaliser toutes les analyse disponibles sous R. 
 
 L'avantage de Shiny est qu'aucune connaissance en HTML, CSS ainsi que Javascript n'est requisen, tout se fais directement en R. Cela permet et peut attirer de potentiel utilisateurs étant attiré par le developpement d'application web sans connaitre les langages du web. 
 
-Pourquoi avoir choisi Shiny : 
+**Pourquoi avoir choisi Shiny **: 
 
 
 Le principale objectif de notre TER est d'integrer dans l'application Web la visualisation de données.
 Pour améliorer et fournir des graphiques plus parlant pour l'OVE nous avons analysé les différents graphiques déjà présent, puis nous nous sommes inspiré des graphiques présent dans les notes flash du ministère de l'éducation, afin de les reproduires et de les integrer a notre application web. 
 
 
+**Navigation dans les différents sites**: 
 
+Le M.E.N.E.S.R publie des résultats d'enquête sur l'insertion professionnelles des diplômé.e.s de l'université.<br\>
+Etant à la recherches d'informations pertinentes et parlante pour les utilisateurs nous nous sommes donc rendu sur le site du Ministère de l'Education National de l'Enseignement Supérieur et Recherche, afin d'observer des graphiques que l'ont pourraient ajouter sur le l'application web de l'OVE<br/>
 
+Le lien vers le site du M.E.N.E.S.R
+http://www.enseignementsup-recherche.gouv.fr/
 
+Il faut ensuite se rendre dans l'onglet Enseignement Supérieur > Insertion Professionnelle-Emploi ensuite se rendre sur le lien "CONSULTER L'INTERGRALITE DE L'ENQUETE". Une fois arriver sur cette page l'utilisateur à la possibilitée de consulter les Résultats pour les diplômé.e.s de Master LMD, de Master Enseignement, de Licence professionnelle et de DUT. L'utilisateur peut consulter les résultats sous plusieurs déclinaison(i.e selon l'université, selon le domaine disciplinaire et la discipine)
+Dans le bas de la page des "Note Flash" sont présentes. Elles fournissent une synthèses des données (i.e toutes les universités, ainsi que tous les domaines et disciplines concernées), ainsi que des tableaux et des graphiques permettant de mieux visualiser les données qui en résultent.
+
+**Notice méthodologique **: enquête relative à l'insertion professionnelle des diplômé.e.s de l'université. 
+
+Le **taux d’insertion** est défini comme le taux net d’emploi c’est-à-dire la part des diplômé.e.s occupant un emploi, quel qu’il soit, sur l’ensemble des diplômé.e.s présents sur le marché du travail (en emploi ou au chômage).<br/>
+
+**L’emploi stable** correspond à la part des diplômé.e.s en emploi sous contrat de CDI, sous statut de la Fonction publique ou en qualité de travailleur indépendant.<br/>
+
+L’information collectée sur le salaire porte sur le salaire net mensuel, primes comprises. Les salaires affichés correspondent aux valeurs médianes sur les emplois à temps plein. A partir de ces valeurs, de manière conventionnelle, le salaire brut annuel est estimé sur la base d’un taux forfaitaire de passage du net au brut de 1,3 (donnée moyenne constatée sur les salaires du secteur privé) et rapportée sur 12 mois.<br/>
+La distribution des salaires est appréhendée au travers des quartiles qui sont les valeurs qui partagent cette distribution en quatre parties égales. Le premier quartile est le salaire au-dessous duquel se situent 25 % des salaires, le deuxième quartile, appelé aussi médiane, est le salaire qui partagent la distribution en deux parties égales (50 % au-dessous et 50 % au-dessus) et le troisième quartile est le salaire au-dessus duquel se situent 25 % des salaires.
+
+Le développement de l'application web pour l'OVE reprend les critères definis ci-dessus.
+Prenons un exemple que nous avons decidé d'intrégrer dans l'application web de l'OVE.
+
+![](/Users/cyrillauret/Desktop/tableau.png)
+
+Pour trouver le nombre de personne total : 
+
+100*68 
 
 ## Etat de l'art
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 
 ## Travail effectué 
