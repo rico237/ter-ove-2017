@@ -74,7 +74,7 @@ Le langage R est langage qui a beaucoup de succès auprès de la communauté sci
 
 Shiny est un package R, développé par RStudio qui permet la création de pages web interactives sur lesquelles il est possible de réaliser toutes les analyse disponibles sous R. 
 
-L'avantage de Shiny est qu'aucune connaissance en HTML, CSS ainsi que Javascript n'est requisen, tout se fais directement en R. Cela permet et peut attirer de potentiel utilisateurs étant attiré par le developpement d'application web sans connaitre les langages du web. 
+L'avantage de Shiny est qu'aucune connaissance en HTML, CSS ainsi que Javascript n'est requise, tout se fait directement en R. Cela permet et peut attirer de potentiel utilisateurs étant attiré par le developpement d'application web sans connaitre les langages du web. 
 
 **Pourquoi avoir choisi Shiny **: 
 
@@ -110,7 +110,36 @@ Prenons un exemple que nous avons decidé d'intrégrer dans l'application web de
 
 Pour trouver le nombre de personne total : 
 
-100*68 
+(100 * 68 ) / 84 = 80 diplômé.e.s au total
+
+(80 - 68) = 12 diplômé.e.s n'ont pas répondu au questionnaire
+
+19% des 68 diplômé.e.s qui ont répondu sont des femmes soit (68 * 19) / 100 = 12 femmes diplômé.e.s
+
+
+Emploi stable après 18 mois 
+
+Taux d'insertion : 
+
+96% des 68 diplômé.e.s qui ont répondu soit (68 * 0.96) = 65 diplômé.e.s
+
+Part des Emploies Stables : 
+
+96% des 68 diplômé.e.s qui ont répondu soit (68 * 0.96) = 65 diplômé.e.s
+
+Part des emploies à temps plein : 
+
+98% des 68 diplômé.e.s qui ont répondu soit (68 * 0.98) = 67 diplômé.e.s
+
+
+Part des emploies de niveau cadre :
+
+95% des 68 diplômé.e.s qui ont répondu soit (68 * 0.95) = 64 diplômé.e.s
+
+
+
+
+
 
 ## Etat de l'art
 
@@ -119,11 +148,18 @@ Pour trouver le nombre de personne total :
 ## Travail effectué 
 Dans un premier temps l'apprentissage du langage R a été nécéssaire. Pour se faire chaque étudiant a appris autodidactiquement le langage R et lors de non compréhension ou utilisation de fonction, des réunions ont étaient organisés afin d'effectuer le point dans notre avancement, et de fournir des explications a nos questions. 
 
+NOS RESULTATS A PLACER AVEC ANALYSE   : 
 
 
 ## Gestion de projet 
 Tous les jeudis nous nous sommes réuni afin d'avancer et mener a bien notre projet TER. 
-De plus tous les jeudis nous avions rendez-vous avec notre encadrant TER M.Malapert Arnaud afin de faire le point sur notre avancement et d'avoir les informations pour 
-## Conclusion 
+De plus tous les jeudis nous avions rendez-vous avec notre encadrant TER M.Malapert Arnaud afin de faire le point sur notre avancement et d'avoir les informations complémentaires pour produire et menée au mieux notre projet. 
+En ce qui concerne la partie outils utilisés, un repository github a été mis en place dans le but de faciliter le développement de l'application. 
 
 ## Perspective et reflexions personnelles
+
+## Conclusion 
+
+Ce projet nous a permis d'apprendre le langage R, ainsi que le déploiement du code écrit sur une page Web grâce au framework Shinny. 
+De plus ce projet nous à appris a développer le travail d'équipe ainsi que la cohésion de groupe et la gestion de projet. 
+
