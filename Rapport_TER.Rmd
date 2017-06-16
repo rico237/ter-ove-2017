@@ -1,8 +1,10 @@
 ---
 title: "Travaux d'Etude et de Recherche"
-author : "Lafortune Pierre, Lauret Cyril, Wolber Herrick"
-date : "22 juin 2017"
-output: html_document
+author: "Lafortune Pierre, Lauret Cyril, Wolber Herrick"
+date: "22 juin 2017"
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}

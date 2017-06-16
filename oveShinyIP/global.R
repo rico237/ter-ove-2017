@@ -19,8 +19,7 @@ getTermMatrix <- memoise(function(text) {
   myCorpus <- tm_map(myCorpus, removePunctuation)
   myCorpus <- tm_map(myCorpus, removeNumbers)
   myCorpus <- tm_map(myCorpus, removeWords,
-                     c(stopwords("SMART"), "le", "la", "de", "du", "des", "dans"))
-  #myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("SMART"), "le", "la", "de", "du", "des", "dans"),lazy = TRUE)
+                     c(stopwords("SMART"), "le", "la", "de", "du", "des", "dans"),lazy = TRUE)
   #myCorpus <- tm_map(myCorpus, stem, lazy = TRUE)
 
   myDTM <- TermDocumentMatrix(myCorpus,

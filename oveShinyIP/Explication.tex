@@ -1,0 +1,187 @@
+% Created 2017-06-14 Wed 20:49
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[margin=0.5in]{geometry}
+\author{Lafortune Pierre}
+\date{}
+\title{Explications}
+\hypersetup{
+ pdfauthor={Lafortune Pierre},
+ pdftitle={Explications},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.0.50.2 (Org mode 9.0.5)}, 
+ pdflang={Frenchb}}
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+\newpage 
+
+\section{Shiny}
+\label{sec:org7f68c11}
+On peut construire facilement une application R avec Shiny. 
+
+\subsection{C'est quoi Shiny}
+\label{sec:orgcea676d}
+Shiny est une API(Application Programming Interface) qui permet de créer des sites web sans avoir une connaissance préalable
+en language du web. 
+
+\subsection{Comment marche une application Shiny}
+\label{sec:org07d942b}
+Analogue au système client-serveur. Un serveur reçoit des instruction à partir d'un fichier R. Il construit la page web. L'utilisateur
+interagit avec cette page web. La page web intéragit avec le serveur à son tour qui puise ses instructions du fichier R.
+
+\subsection{Concrètement, une application shiny a deux parties}
+\label{sec:org37f3a32}
+\begin{verbatim}
+library(shiny)
+ui <- fluidPage()
+
+server <- function(input, output){}
+
+shinyApp(ui = ui, server = server)
+\end{verbatim}
+
+\begin{itemize}
+\item La partie ui(User Interface) regroupe toutes les instructions de mise en page. C'est l'interface destiné à être vue par l'utilisateur.
+\item La partie server regroupe toutes les instructions pour plotter les graphes.
+\end{itemize}
+
+Shiny facilite l'interaction entre les deux et met en place un système de \texttt{reactive} pour intéragir avec l'utilisateur et garder les plots à jour.
+
+\subsection{Comment construire une application?}
+\label{sec:org18a0e4c}
+La construction d'une application doit se faire autour de ces deux mots: entrée et sortie. Il faut determiner pour chaque variables, vues, plots
+si c'est une entrée ou une sortie de notre application.
+
+\begin{itemize}
+\item Les plots sont toujours(ou presque) des sorties
+\item Les boutons des entrées
+\end{itemize}
+
+Il y a pour cela deux groupes de fonctions fournis par shiny: *Input et *Output.
+
+Pour chacune de ces fonctions, ils sont nommés de la sorte: [TypeOfDisplay][Output/Input](id,arg\ldots{})
+
+Tout les objets *Output sont construite dans la partie \texttt{server}.
+
+On se référe à un objet graphique dans laquelle on va afficher de la sorte: [output]\$[id]
+
+Example : output\$hist <- \# code
+
+Utiliser la fonction render*() pour créer les outputs.
+
+On accède aux champs d'entrée avec input. Example:
+
+\begin{verbatim}
+server <- function(input, output){
+    output$hist <- renderPlot({
+	hist(rnorm(input&num))
+    })
+}
+\end{verbatim}
+
+\subsection{La réactivité - Reactivity}
+\label{sec:org389cc39}
+La réactivité: une action/modification sur une entrée provoque immédiatement le calcul de la sortie associé.
+
+Variable réactive marche avec les fonctions réactive. Ne marche pas à l'extérieur.
+
+Marche en deux étapes:
+\begin{itemize}
+\item les valeurs réactive notifie les fonctions qui les utilisent quand ils deviennent invalide.
+\item l'object créér par réactivité réagit.
+\end{itemize}
+
+\subsection{Récap Server}
+\label{sec:orgfb1a54a}
+\subsubsection{sauvegarder output qu'on construit dans output\$*}
+\label{sec:orgb3a323f}
+\subsubsection{construire les output avec les fonctions render*()}
+\label{sec:orga1e9c2c}
+\subsubsection{accéder aux valeurs d'entrée avec input\$*}
+\label{sec:org8cdf07e}
+
+\subsection{Objet réactive - reactive expression}
+\label{sec:org0c795e9}
+Un objet réactive, de la même façon qu'une variable réactive, réagit en fonction des entrées qui se trouvent dans son corps.
+
+\begin{verbatim}
+data <- reactive({
+    rnorm(input$num)
+})
+\end{verbatim}
+
+On peut appeler un objet réactive comme une fonction. 
+\begin{verbatim}
+data()
+\end{verbatim}
+
+Les objet réactive \texttt{cache} leur valeur. Ils retournent leur plus récente valeur.
+
+Utilie pour modulariser le code.
+
+\subsection{Les observeurs}
+\label{sec:org1613ff7}
+Trigger du code à éxécuter coté serveur quand une valeur réactive à été invalidé.
+
+\subsection{Les eventReactive}
+\label{sec:org028232c}
+Utile pour retarder une réaction. 
+
+\subsection{Créer nos propres variable réactive}
+\label{sec:orgd64ac7f}
+reactiveValues() créer une liste de valeurs réactive qu'on peut utliser.
+\begin{verbatim}
+rv <- reactiveValues(data = rnorm(100))
+
+observeEvent(input$norm, { rv$data <- rnorm(100) })
+observeEvent(input$unif, { rv$data <- runif(100) })
+
+output$hist <- renderPlot({
+    hist(rv$data)
+})
+\end{verbatim}
+
+\subsection{Combien de fois sont éxécuté les codes}
+\label{sec:orgfb35d1e}
+Les codes qui sont avant la méthode server sont éxécutés qu'une seule fois par session R.
+
+Les codes qui sont dans la fonction server sont éxécutés une fois par connection utilisateur.
+
+Les codes qui sont dans les fonction réactive sont éxécutés à chaque réaction qui les concernent.
+
+\subsection{Ajout de contenu HTML}
+\label{sec:org60701d3}
+Utiliser tags\$* pour ajouter des tags en HTML
+\begin{verbatim}
+tags$h1("Cecil est un titre")
+tags$a(href = "www.rstudio.com", "RStudio")
+\end{verbatim}
+
+
+\subsection{Utilisation des layout pour mieux positioner les éléments dans la page html}
+\label{sec:org7601d84}
+\begin{itemize}
+\item fluidRow() ajout une nouvelle ligne à la grille. Chaque nouvelle ligne est ajouté en dessous la précédente.
+\item column(width, offset) permet de decouper une ligne en colonne. Une ligne est divisé en 12 colonne par défaut.
+\item Utiliser des panels pour grouper des éléments graphique de façon logique. Exemple: navlistPanel, sidebarPanel, tabPanel etc.
+\end{itemize}
+\end{document}
