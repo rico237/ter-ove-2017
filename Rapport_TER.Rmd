@@ -84,6 +84,26 @@ L'avantage de Shiny est qu'aucune connaissance en HTML, CSS ainsi que Javascript
 Le principale objectif de notre TER est d'integrer dans l'application Web la visualisation de données.
 Pour améliorer et fournir des graphiques plus parlant pour l'OVE nous avons analysé les différents graphiques déjà présent, puis nous nous sommes inspiré des graphiques présent dans les notes flash du ministère de l'éducation, afin de les reproduires et de les integrer a notre application web. 
 
+**C'est quoi Shiny **:
+
+  Shiny est une API(Application Programming Interface) qui permet de créer des sites web sans avoir une connaissance préalable en language du web. Shiny facilite l'interaction entre les deux et met en place un système de reactive pour intéragir avec l'utilisateur et garder les plots à jour.
+  - La partie ui(User Interface) regroupe toutes les instructions de mise en page. C'est l'interface destiné à être vue par l'utilisateur.
+   - La partie server regroupe toutes les instructions pour plotter les graphes.
+
+   La réactivité: une action/modification sur une entrée provoque immédiatement le calcul de la sortie associé.
+   
+   Variable réactive marche avec les fonctions réactive. Ne marche pas à l'extérieur.
+
+   Marche en deux étapes:
+   - les valeurs réactive notifie les fonctions qui les utilisent quand ils deviennent invalide.
+   - l'object créér par réactivité réagit.
+   
+      Les codes qui sont avant la méthode server sont éxécutés qu'une seule fois par session R.
+
+   Les codes qui sont dans la fonction server sont éxécutés une fois par connection utilisateur.
+
+   Les codes qui sont dans les fonction réactive sont éxécutés à chaque réaction qui les concernent.
+
 
 **Navigation dans les différents sites**: 
 
