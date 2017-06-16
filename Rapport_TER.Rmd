@@ -140,7 +140,6 @@ Part des emploies de niveau cadre :
 
 
 
-
 ## Etat de l'art
 
 
@@ -148,7 +147,14 @@ Part des emploies de niveau cadre :
 ## Travail effectué 
 Dans un premier temps l'apprentissage du langage R a été nécéssaire. Pour se faire chaque étudiant a appris autodidactiquement le langage R et lors de non compréhension ou utilisation de fonction, des réunions ont étaient organisés afin d'effectuer le point dans notre avancement, et de fournir des explications a nos questions. 
 
-NOS RESULTATS A PLACER AVEC ANALYSE   : 
+
+**Difficultés Rencontrées**
+
+Les difficultés rencontrées découlent de notre apprentisage du langage R. En effet n'ayant pas une expérience récente dans l'utilisation du langage R, nous avons souvent été amené à écrire de nombreuses lignes de codes qui auraient pu être simplifiés par des fonctions R très intelligentes. Certaines fonction de R pouvant traités une masse de données fut souvent divisé en plusieurs fonction non intelligentes ayant pour même finalités celle de certaines fonctions de R.
+Une autre difficulté rencontré lors du TER fut d’adapter le code précédemment développe en fonction d’un jeu de donnée que nous avions crée de manière aléatoire au véritable jeu de donnée fournis par l’OVE. En effet le jeu de donnée crée par nos soins suivait les intitulés de questions fournit dans le questionnaire données aux étudiant avec des valeurs arbitraires possible de réponses correspondantes. Ces valeurs sont générés aléatoirement entre une valeur minimale et maximale avec des probabilité de réponses pour obtenir des analyses statistiques cohérentes. Seulement le champs de données données par l’OVE comportait des champs vides, pour les étudiant ne répondant pas forcément a toutes les réponses. Ces champs vides pouvaient certaines fois compromettre les résultat obtenus par nos analyses statistiques.
+
+
+NOS RESULTATS A PLACER AVEC ANALYSE (INSERTION GRAPHIQUE)  : 
 
 
 ## Gestion de projet 
