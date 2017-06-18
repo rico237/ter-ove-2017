@@ -104,6 +104,7 @@ sexe <- data$sexe
 
 tab<-table(situationEmploi, sexe)
 das<-data.frame(tab/sum(tab))
+das$Freq <- round(das$Freq,2)
 
 ## Calcul Pour la progression des conditions d'emplois
 ## Data frame avec l'ensemble des donnees
@@ -676,8 +677,10 @@ shinyServer(
     
     ## OUTPUT : pHFEmploi : Pourcentage des hommes et femmes possédant un emploi
     output$pHFEmploi <- renderPlot({
-      plot <- ggplot(das, aes(x=das$sexe, y=das$Freq, fill=factor(das$situationEmploi)))+ geom_bar(stat = "identity", position=position_dodge()) + 
-        geom_text(aes(label=das$Freq), size=3.5)+
+      print("############## HERE ###############")
+      print(round(das$Freq, 2))
+      plot <- ggplot(das, aes(x=das$sexe, y=round(das$Freq,2), fill=factor(das$situationEmploi)))+ geom_bar(stat = "identity", position=position_dodge()) + 
+        geom_text(aes(label=das$Freq, y = round(das$Freq + 0.02, 2)),position = position_dodge(0.9), size=3.5)+
         labs(title="Pourcentage des hommes et femmes possédant un emploi", x="Sexe", y="Pourcentage", fill="")
       plot
     })
@@ -730,15 +733,13 @@ shinyServer(
       colnames(df) <-c("18 mois", "30 mois")
       df
     })
-    
-    ## TODO meilleur façon d'afficher ce tableau. Il n'y a pas les row names
+
+    # TauxInsertionTable    
     output$TauxInsertion <- renderPlot({
-      #dataDepartement()
       grid.table(dataDepartement())
-      # TauxInsertionTable
       })
     
-    ## TODO rendre dfBoursier reactive par rapport aux départements???
+      ## TODO rendre dfBoursier reactive par rapport aux départements???
     output$bourseFaciliter <- renderPlot({
       plotBourse <- ggplot(dfBoursier, aes(x=factor(dfBoursier$xLabel), y=dfBoursier$y, fill=factor(dfBoursier$fill)))+
         geom_bar(stat = "identity", position = position_dodge()) +
