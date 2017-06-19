@@ -234,11 +234,11 @@ salBrut<-with(tempsPlein, tempsPlein$salaireMensuel) # On recupère uniquement l
 # print("############print(salBrut))#############")
 # print(salBrut)
 salBrutNumeric <- as.numeric(salBrut) # parce que ce sont des facteurs
-salBrut<-salaireBrut(salBrutNumeric) #on applique la fonciton de transformation en salaire brut
+salBrut<-salaireBrut(salBrutNumeric * 12) #on applique la fonciton de transformation en salaire brut
 # print("############print(salBrut) après fonction salaireBrut()#############")
 # print(salBrut)
 
-salBrut30<-salaireBrut(as.numeric(with(tempsPlein2, tempsPlein2$salaireMensuel2014))) # code du haut en imbriqué (30 mois)
+salBrut30<-salaireBrut(as.numeric(with(tempsPlein2, tempsPlein2$salaireMensuel2014)) * 12) # code du haut en imbriqué (30 mois)
 # print("############print(salBrut30)#############")
 # print(salBrut30)
 
@@ -256,6 +256,42 @@ fill<-c("Emploi stable","Emploi à temps plein","Emploi cadre ou intermédiaires
 dfPlot<-data.frame(x,y,fill)
 dfPlot$date<-ifelse(dfPlot$x == 1, "18 mois après le diplome", "30 mois après le diplome")
 dfPlot$freq<-GetPercentLabels2(dfPlot$y)
+
+###################################
+## Lieu de l'emlois
+alpesMaritimes <- subset(insertion, departements == "Alpes-Maritimes")
+alpesMaritimes <- alpesMaritimes["departements"]
+alpesMaritimes <- length(alpesMaritimes$departements)
+
+pacaHORSAlpesMaritimes <- subset(insertion, departements == "Bouches-du-Rhône" | departements == "Vaucluse" | departements == "Drôme" | departements == "Var" | departements == "Alpes-de-Haute-Provence" | departements == "Hautes-Alpes")
+pacaHORSAlpesMaritimes <- pacaHORSAlpesMaritimes["departements"]
+pacaHORSAlpesMaritimes <- length(pacaHORSAlpesMaritimes$departements)
+
+HORSpaca <- subset(insertion, departements != "Bouches-du-Rhône" | departements != "Vaucluse" | departements != "Drôme" | departements != "Var" | departements != "Alpes-de-Haute-Provence" | departements != "Hautes-Alpes")
+HORSpaca <- subset(HORSpaca, departements != "Alpes-Maritimes")
+HORSpaca <- length(HORSpaca$departements)
+# print("######### HERE #########")
+# print(HORSpaca)
+
+
+SIZE_INSERTION <- na.omit(insertion["departements"])
+SIZE_INSERTION <- length(SIZE_INSERTION$departements)
+# print(SIZE_INSERTION)
+
+# print("########### HERE ###########")
+# print(ToHundredPercent(alpesMaritimes / SIZE_INSERTION))
+# print(ToHundredPercent(pacaHORSAlpesMaritimes / SIZE_INSERTION))
+# print(HORSpaca / SIZE_INSERTION)
+# print(ToHundredPercent(HORSpaca / SIZE_INSERTION))
+
+x <- c("alpes-maritimes", "paca hors alpes-maritimes", "hors paca")
+y <- (c(
+  ToHundredPercent(alpesMaritimes / SIZE_INSERTION),
+  ToHundredPercent(pacaHORSAlpesMaritimes / SIZE_INSERTION),
+  ToHundredPercent(HORSpaca / SIZE_INSERTION)))
+lieuEmplois <- data.frame(x, y)
+print("######## HERE ##########")
+print(lieuEmplois)
 
 ## Possible choices for the dynamic UI
 choices.annee <- sort(unique(data$annee))
@@ -325,7 +361,7 @@ poursuiteDF$labelY<-GetPercentLabels(poursuiteDF$b)
 
 ######### Poursuite d'études à 18 mois###############
 #####################################################
-universite$insertionDixHuitsMois <-ifelse(universite$situationProN30 == "En emploi ", "oui", "non")
+universite$insertionDixHuitsMois <-ifelse(universite$situationProN18 == "En emploi ", "oui", "non")
 # print("############str(insertionDixHuitsMois)#############")
 # str(universite$insertionDixHuitsMois)
 
@@ -345,7 +381,7 @@ sexeToPlot <- na.omit(universiteToPlot$sexe)
 
 ######### Poursuite d'études à 30 mois ##############
 #####################################################
-universite$insertionTrenteMois <-ifelse(universite$situationProN18 == "En emploi ", "oui", "non")
+universite$insertionTrenteMois <-ifelse(universite$situationProN30 == "En emploi ", "oui", "non")
 # print("############str(insertionTrenteMois)#############")
 # str(universite$insertionTrenteMois)
 
@@ -800,6 +836,17 @@ shinyServer(
       plotInsertion2<- plotInsertion2 + scale_fill_discrete(name = "")
       plotInsertion2<- plotInsertion2 + theme_minimal()
       plotInsertion2
+    })
+    
+    ## Lieu de l'emploi
+    output$lieuDeLemploi <- renderPlot({
+      plot <- ggplot(lieuEmplois, aes(x=x, y = lieuEmplois$y, fill=x))+ 
+        geom_bar(stat = "identity", position=position_dodge()) + 
+        geom_text(aes(label = round(y,2), y = lieuEmplois$y + 0.15),position = position_dodge(0.9), vjust = -1)+
+        labs(title="Lieu d'emplois (en %)", x="", y="Pourcentage", fill="")+
+        ylim(c(0,100))
+      plot<- plot + theme_calc() + scale_color_calc()
+      plot
     })
   }
 )

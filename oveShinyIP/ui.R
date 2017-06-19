@@ -239,9 +239,12 @@ fluidPage( theme = "bootstrap.min.css",
                         plotOutput("progressionConditionEmploi"))
                ),
                fluidRow(
-                 tags$p("Espace de débuggage:"),
-                 textOutput("Debug")
+                 column(4,
+                        tags$p("Explications du graphique - Lieu de l'emploi")),
+                 column(8,
+                        plotOutput("lieuDeLemploi"))
                )
+               
       ),
       tabPanel("En Plus",
                fluidRow(
