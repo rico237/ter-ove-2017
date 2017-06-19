@@ -233,18 +233,17 @@ fluidPage( theme = "bootstrap.min.css",
                         plotOutput("possedeEmploisTrenteMois"))
                ),
                fluidRow(
-                 tags$p("Espace de débuggage:"),
-                 textOutput("Debug")
-               )
-      ),
-      tabPanel("En Plus",
-               fluidRow(
                  column(4,
                         tags$p("Explications du graphique - La progression des conditions d'emplois après 18 mois et 30 mois")),
                  column(8,
                         plotOutput("progressionConditionEmploi"))
                ),
-               
+               fluidRow(
+                 tags$p("Espace de débuggage:"),
+                 textOutput("Debug")
+               )
+      ),
+      tabPanel("En Plus",
                fluidRow(
                  column(4,
                         tags$p("Explications du graphique - La bource a-t-elle faciliter l'accés à l'emplois?")),

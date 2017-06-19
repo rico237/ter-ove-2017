@@ -45,6 +45,15 @@ GetPercentLabels <- function(x, threshold = 1, digits = 1) {
   return(r)
 }
 
+## x compris en 0 et 1. Transforme x en un pourcentage en 0 et 100.
+ToHundredPercent <- function(x){
+  ans <- x
+  if(x < 1 && x >= 0){
+    ans <- x * 100
+  }
+  return(ans)
+}
+
 ## http://stackoverflow.com/questions/21236229/stacked-bar-chart
 ## http://rstudio-pubs-static.s3.amazonaws.com/4305_8df3611f69fa48c2ba6bbca9a8367895.html
 ## http://www.sthda.com/french/wiki/ggplot2-barplots-guide-de-demarrage-rapide-logiciel-r-et-visualisation-de-donnees
@@ -677,11 +686,10 @@ shinyServer(
     
     ## OUTPUT : pHFEmploi : Pourcentage des hommes et femmes possédant un emploi
     output$pHFEmploi <- renderPlot({
-      print("############## HERE ###############")
-      print(round(das$Freq, 2))
-      plot <- ggplot(das, aes(x=das$sexe, y=round(das$Freq,2), fill=factor(das$situationEmploi)))+ geom_bar(stat = "identity", position=position_dodge()) + 
-        geom_text(aes(label=das$Freq, y = round(das$Freq + 0.02, 2)),position = position_dodge(0.9), size=3.5)+
-        labs(title="Pourcentage des hommes et femmes possédant un emploi", x="Sexe", y="Pourcentage", fill="")
+      plot <- ggplot(das, aes(x=das$sexe, y=ToHundredPercent(round(das$Freq,2)), fill=factor(das$situationEmploi)))+ geom_bar(stat = "identity", position=position_dodge()) + 
+        geom_text(aes(label=ToHundredPercent(round(das$Freq,2)), y = ToHundredPercent(round(das$Freq,2))+2),position = position_dodge(0.9), size=3.5)+
+        labs(title="Pourcentage des hommes et femmes possédant un emploi", x="Sexe", y="Pourcentage", fill="")+
+        ylim(c(0,100))
       plot
     })
     
@@ -769,24 +777,26 @@ shinyServer(
     
     ## Possède un emplois à 18 mois
     output$possedeEmploisDixHuitsMois <- renderPlot({
+      population <- length(universiteToPlot$insertionDixHuitsMois)
       plotInsertion<-ggplot(universiteToPlot, aes(x=universiteToPlot$insertionDixHuitsMois, fill=universiteToPlot$sexe)) 
       plotInsertion<- plotInsertion + geom_bar() 
       plotInsertion<- plotInsertion + xlab("") 
       plotInsertion<- plotInsertion + ylab("Total") 
       plotInsertion<- plotInsertion + ylim(c(0, DATA_SIZE))
-      plotInsertion<- plotInsertion + ggtitle("Possède un emploi à 18 mois. Population = TODO personnes.") 
+      plotInsertion<- plotInsertion + ggtitle(sprintf("Possède un emplois à 18 mois. Population est de %d personnes", population)) 
       plotInsertion<- plotInsertion + scale_fill_discrete(name = "")
       plotInsertion<- plotInsertion + theme_minimal()
       plotInsertion
     })
     ## Possède un emplois à 30 mois
     output$possedeEmploisTrenteMois <- renderPlot({
+      population <- length(universiteToPlotTrenteMois$insertionTrenteMois)
       plotInsertion2<-ggplot(universiteToPlotTrenteMois, aes(x=universiteToPlotTrenteMois$insertionTrenteMois, fill=universiteToPlotTrenteMois$sexe)) 
       plotInsertion2<- plotInsertion2 + geom_bar(position=position_dodge()) 
       plotInsertion2<- plotInsertion2 + xlab("") 
       plotInsertion2<- plotInsertion2 + ylab("Total") 
       plotInsertion2<- plotInsertion2 + ylim(c(0,DATA_SIZE))
-      plotInsertion2<- plotInsertion2 + ggtitle("Possède un emploi à 30 mois. Population = 200 personnes.") 
+      plotInsertion2<- plotInsertion2 + ggtitle(sprintf("Possède un emploi à 30 mois. Population = %d personnes", population)) 
       plotInsertion2<- plotInsertion2 + scale_fill_discrete(name = "")
       plotInsertion2<- plotInsertion2 + theme_minimal()
       plotInsertion2
