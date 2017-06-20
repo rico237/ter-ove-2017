@@ -194,7 +194,8 @@ fluidPage( theme = "bootstrap.min.css",
       tabPanel("TeamStrange", 
                fluidRow(
                  column(4,
-                        tags$p("Explication du graphique")),
+                        tags$p("Ce graphique montre une égalité entre le pourcentage d’homme et de femme possédant un emploi.
+")),
                  column(8,offset = 6,
                         plotOutput("pHFEmploi")))
                         
@@ -204,43 +205,58 @@ fluidPage( theme = "bootstrap.min.css",
                         fluidRow(
                           column(12,
                                  selectInput("Departement", "departements:", departements))),
-                        tags$p("Le pourcentage d'insertion après 18 mois et 30 mois.")),
+                        tags$p("Le pourcentage d'insertion après 18 mois et 30 mois. Ce tableau résume, pour 18 et 30 mois, les différentes taux d’insertion.
+")),
                  column(9,
                         plotOutput("TauxInsertion"))
                ),
                fluidRow(
                  column(4,
-                        tags$p("Explications du graphique - Quel pourcentage possède le diplôme Licence Pro par rapport au diplôme de Master.")),
+                        tags$p("Quel pourcentage possède le diplôme Licence Pro par rapport au diplôme de Master. On note clairement un taux d’emplois supérieur chez les étudiant possédant un Master que ceux qui
+possèdent une Licence Pro.")),
                  column(8,
                         plotOutput("typeDiplomePossedantEmploi"))
                ),
                fluidRow(
                  column(4,
-                        tags$p("Explications du graphique - Quel pourcentage poursuit une étude supérieur?")),
+                        tags$p("Près de 60% des diplômés en licence professionnelle poursuivent des études. Le taux de poursuite
+d'étude est nettement inférieur en master où seulement 33% ont poursuivis des études en 2013-2014 et
+seulement 20% en 2014-2015. L'information importante est qu'il y a eu 13% d'étudiant de master qui
+n'ont pas poursuivis leur études après leur master en 2014-2015 comparé à l'année précédente.
+")),
                  column(8,
                         plotOutput("evolutionPoursuiteEtude"))
                ),
                fluidRow(
                  column(4,
-                        tags$p("Explications du graphique - Quel pourcentage d'homme et femmes possède un emplois après dix huits mois?")),
+                        tags$p("Il y a une égalité entre les deux sexes. Il y a presque autant d’homme et de femme qui possède un
+emploi après 18 mois.")),
                  column(8,
                         plotOutput("possedeEmploisDixHuitsMois"))
                ),
                fluidRow(
                  column(4,
-                        tags$p("Explications du graphique - Quel pourcentage d'homme et femmes possède un emplois après trente mois?")),
+                        tags$p("En comparant ce graphe à celui des 18 mois, on peut noter qu’il y a un peu plus de femme sans emplois
+à 30 mois. Cependant le nombre d’homme et de femme avec un emplois est similaire.")),
                  column(8,
                         plotOutput("possedeEmploisTrenteMois"))
                ),
                fluidRow(
                  column(4,
-                        tags$p("Explications du graphique - La progression des conditions d'emplois après 18 mois et 30 mois")),
+                        tags$p("On note qu’il y a une majorité qui sont employé à temps plein. Ce pourcentage diminue légèrement à 30
+mois mais reste néanmoins au dessus de 80%. C’est un élément exploitable pour l’OVE. Cependant, le
+pourcentage d’emploi stable qui est de 77% après 18 mois tombe à 65% après 30 mois. Les emplois
+cadres ou intermédiaires restent au dessus des 50% pour 18 et 30 mois. Notons également que ces
+données proviennent du ministère de l’intérieur.")),
                  column(8,
                         plotOutput("progressionConditionEmploi"))
                ),
                fluidRow(
                  column(4,
-                        tags$p("Explications du graphique - Lieu de l'emploi")),
+                        tags$p("Lieu de l'emploi. On peut remarquer que la majorité (52,29%) des étudiants ayant obtenu leur diplôme dans les Alpes
+Maritimes trouve un travaille dans la région. Et très peux de de diplômés dans la région paca hors
+Alpes-Maritimes (3,73%) ce qui signifie que presque l’autre moitié des étudiants diplômés, quitte la
+région paca (47,71%).")),
                  column(8,
                         plotOutput("lieuDeLemploi"))
                )
@@ -249,7 +265,9 @@ fluidPage( theme = "bootstrap.min.css",
       tabPanel("En Plus",
                fluidRow(
                  column(4,
-                        tags$p("Explications du graphique - La bource a-t-elle faciliter l'accés à l'emplois?")),
+                        tags$p("Parmis ceux qui ne possède pas d'emplois, la majorité ne sont pas boursier de l'état. Hors parmi ceux
+qui possède un emplois 23% sont boursier.
+")),
                  column(8,
                         plotOutput("bourseFaciliter"))
                )
